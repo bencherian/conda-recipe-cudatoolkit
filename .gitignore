@@ -1,2 +1,6 @@
 *.pyc
 src
+*~
+*.swp
+*.swo
+*.un

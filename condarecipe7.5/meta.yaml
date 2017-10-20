@@ -15,17 +15,17 @@ requirements:
     - conda
     - pyyaml
   run:
-    - cudart 7.5.*
-    - cublas 7.5.*
-    - cufft 7.5.*
-    - curand 7.5.*
-    - cusparse 7.5.*
-    - cusolver 7.5.*
-    - npp 7.5.*
-    - nvblas 7.5.*
-    - nvrtc 7.5.*
-    - nvvm 7.5.*
-    - cupti 7.5.*
+    - {{ pin_subpackage('cudart') }}
+    - {{ pin_subpackage('cublas') }}
+    - {{ pin_subpackage('cufft') }}
+    - {{ pin_subpackage('curand') }}
+    - {{ pin_subpackage('cusparse') }}
+    - {{ pin_subpackage('cusolver') }}
+    - {{ pin_subpackage('npp') }}
+    - {{ pin_subpackage('nvblas') }}
+    - {{ pin_subpackage('nvrtc') }}
+    - {{ pin_subpackage('nvvm') }}
+    - {{ pin_subpackage('cupti') }}
 
 outputs:
   - name: cudart
