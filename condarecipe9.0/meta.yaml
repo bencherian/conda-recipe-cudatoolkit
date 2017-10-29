@@ -1,9 +1,8 @@
 package:
   name: cudatoolkit
-  version: "8.0"
+  version: "9.0.176"
 
 build:
-  number: 4
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
 
@@ -51,7 +50,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -65,7 +64,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -79,7 +78,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -93,7 +92,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -107,7 +106,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -121,8 +120,8 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cublas 8.0.*
-        - cusparse 8.0.*
+        - cublas 9.0.*
+        - cusparse 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -136,7 +135,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cublas 8.0.*
+        - cublas 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -150,7 +149,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -164,7 +163,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -178,7 +177,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -192,7 +191,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -206,7 +205,7 @@ outputs:
         - conda
         - pyyaml
       run:
-        - cudart 8.0.*
+        - cudart 9.0.*
     source:
       path: ../scripts/
     script: bld.bat # [win]
@@ -216,6 +215,3 @@ outputs:
 source:
   path: ../scripts/
 
-test:
-  requires:
-    - numba
