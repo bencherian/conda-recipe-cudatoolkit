@@ -1,0 +1,217 @@
+package:
+  name: cudatoolkit
+  version: "9.1.85"
+
+build:
+  script_env:
+    - NVTOOLSEXT_INSTALL_PATH
+
+requirements:
+  build:
+    - python >=3
+    - requests
+    - 7za # [win]
+    - conda
+    - pyyaml
+  run:
+    - {{ pin_subpackage('cudart') }}
+    - {{ pin_subpackage('cublas') }}
+    - {{ pin_subpackage('cufft') }}
+    - {{ pin_subpackage('curand') }}
+    - {{ pin_subpackage('cusparse') }}
+    - {{ pin_subpackage('cusolver') }}
+    - {{ pin_subpackage('npp') }}
+    - {{ pin_subpackage('nvblas') }}
+    - {{ pin_subpackage('nvrtc') }}
+    - {{ pin_subpackage('nvvm') }}
+    - {{ pin_subpackage('nvtx') }}
+    - {{ pin_subpackage('nvgraph') }}
+    - {{ pin_subpackage('cupti') }}
+
+outputs:
+  - name: cudart
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: cublas
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: cufft
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: curand
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: cusparse
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: npp
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: cusolver
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cublas 9.1.*
+        - cusparse 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: nvblas
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cublas 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: nvrtc
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: nvvm
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: nvtx
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: cupti
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+  - name: nvgraph
+    requirements:
+      build:
+        - python >=3
+        - requests
+        - 7za # [win]
+        - conda
+        - pyyaml
+      run:
+        - cudart 9.1.*
+    source:
+      path: ../scripts/
+    script: bld.bat # [win]
+    script: bld.sh # [not win]
+
+
+source:
+  path: ../scripts/
+

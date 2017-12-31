@@ -16,7 +16,7 @@ from conda.exports import download, hashsum_file
 import pickle
 
 config = {}
-versions = ['7.5', '8.0', '9.0']
+versions = ['7.5', '8.0', '9.0', '9.1.85']
 for v in versions:
     config[v] = {'linux': {}, 'windows': {}, 'osx': {}}
 
@@ -150,9 +150,9 @@ cu_8['osx'] = {'blob': 'cuda_8.0.61_mac-dmg',
                'libdevice_lib_fmt': 'libdevice.compute_{0}.bc'
                }
 
-
-# CUDA 9.0 setup
-# TODO Verify
+######################
+### CUDA 9.0 setup ###
+######################
 cu_9 = config['9.0']
 cu_9['base_url'] = "https://developer.nvidia.com/compute/cuda/9.0/Prod/"
 cu_9['installers_url_ext'] = 'local_installers/'
@@ -184,7 +184,7 @@ cu_9['linux'] = {'blob': 'cuda_9.0.176_384.81_linux-run',
                  'libdevice_lib_fmt': 'libdevice.{0}.bc'
                  }
 
-cu_9['windows'] = {'blob': 'cuda_9.0.176_win10-exe',
+cu_9['windows'] = {'blob': 'cuda_9.0.176_windows-exe',
                    'patches': [],
                    'cuda_lib_fmt': '{0}64_90.dll',
                    'nvtoolsext_fmt': '{0}64_1.dll',
@@ -199,7 +199,60 @@ cu_9['osx'] = {'blob': 'cuda_9.0.176_mac-dmg',
                'patches': [],
                'cuda_lib_fmt': 'lib{0}.9.0.dylib',
                'nvtoolsext_fmt': 'lib{0}.1.dylib',
-               'nvvm_lib_fmt': 'lib{0}.3.1.0.dylib',
+               'nvvm_lib_fmt': 'lib{0}.3.2.0.dylib',
+               'libdevice_lib_fmt': 'libdevice.{0}.bc'
+               }
+
+######################
+### CUDA 9.1 setup ###
+######################
+cu_91 = config['9.1.85']
+cu_91['base_url'] = "https://developer.nvidia.com/compute/cuda/9.1/Prod/"
+cu_91['installers_url_ext'] = 'local_installers/'
+cu_91['md5_url'] = "https://developer.download.nvidia.com/compute/cuda/9.1/Prod/docs/sidebar/md5sum.txt"
+cu_91['patch_url_ext'] = ''
+cu_91['pkg_libs'] = {
+    'cudart': ['cudart'],
+    'cufft': ['cufft'],
+    'cublas': ['cublas'],
+    'cusparse': ['cusparse'],
+    'curand': ['curand'],
+    'cusolver': ['cusolver'],
+    'npp': ['nppc', 'nppial', 'nppicc', 'nppicom', 'nppidei', 'nppif', 'nppig', 'nppim', 'nppist', 'nppisu', 'nppitc', 'npps'],
+    'nvrtc': ['nvrtc', 'nvrtc-builtins'],
+    'nvblas': ['nvblas'],
+    'nvgraph': ['nvgraph'],
+    'cupti': ['cupti'],
+    'nvtx': ['nvToolsExt'], # Change package name to nvToolsExt?
+    'nvvm': ['nvvm', '10'],
+    }
+cu_91['libdevice_versions'] = ['10']
+
+cu_91['linux'] = {'blob': 'cuda_9.1.85_387.26_linux',
+                 'patches': [],
+                 # need globs to handle symlinks
+                 'cuda_lib_fmt': 'lib{0}.so*',
+                 'nvtoolsext_fmt': 'lib{0}.so*',
+                 'nvvm_lib_fmt': 'lib{0}.so*',
+                 'libdevice_lib_fmt': 'libdevice.{0}.bc'
+                 }
+
+cu_91['windows'] = {'blob': 'cuda_9.1.85_windows',
+                   'patches': [],
+                   'cuda_lib_fmt': '{0}64_91.dll',
+                   'nvtoolsext_fmt': '{0}64_1.dll',
+                   'nvvm_lib_fmt': '{0}64_32_0.dll',
+                   'libdevice_lib_fmt': 'libdevice.{0}.bc',
+                   'NvToolsExtPath' :
+                       os.path.join('c:' + os.sep, 'Program Files',
+                                    'NVIDIA Corporation', 'NVToolsExt', 'bin')
+                   }
+
+cu_91['osx'] = {'blob': 'cuda_9.1.85_mac',
+               'patches': [],
+               'cuda_lib_fmt': 'lib{0}.9.1.dylib',
+               'nvtoolsext_fmt': 'lib{0}.1.dylib',
+               'nvvm_lib_fmt': 'lib{0}.3.2.0.dylib',
                'libdevice_lib_fmt': 'libdevice.{0}.bc'
                }
 
@@ -504,7 +557,8 @@ class LinuxExtractor(Extractor):
         patches = self.patches
         os.chmod(runfile, 0o777)
         check_call([os.path.join(self.src_dir, runfile),
-                    '--toolkitpath', extract_dir, '--toolkit', '--silent'])
+                    '--toolkitpath', extract_dir, '--toolkit', '--silent',
+                    '--no-drm'])
         for p in patches:
             os.chmod(p, 0o777)
             check_call([os.path.join(self.src_dir, p),
