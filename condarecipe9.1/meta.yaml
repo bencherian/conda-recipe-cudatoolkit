@@ -1,10 +1,11 @@
 package:
   name: cudatoolkit
-  version: "9.1.85"
+  version: "9.1"
 
 build:
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
+  number: 1
 
 requirements:
   build:

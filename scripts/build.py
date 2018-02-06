@@ -16,7 +16,7 @@ from conda.exports import download, hashsum_file
 import pickle
 
 config = {}
-versions = ['7.5', '8.0', '9.0', '9.1.85']
+versions = ['7.5', '8.0', '9.0', '9.1']
 for v in versions:
     config[v] = {'linux': {}, 'windows': {}, 'osx': {}}
 
@@ -206,11 +206,11 @@ cu_9['osx'] = {'blob': 'cuda_9.0.176_mac-dmg',
 ######################
 ### CUDA 9.1 setup ###
 ######################
-cu_91 = config['9.1.85']
+cu_91 = config['9.1']
 cu_91['base_url'] = "https://developer.nvidia.com/compute/cuda/9.1/Prod/"
 cu_91['installers_url_ext'] = 'local_installers/'
 cu_91['md5_url'] = "https://developer.download.nvidia.com/compute/cuda/9.1/Prod/docs/sidebar/md5sum.txt"
-cu_91['patch_url_ext'] = ''
+cu_91['patch_url_ext'] = 'patches/1/'
 cu_91['pkg_libs'] = {
     'cudart': ['cudart'],
     'cufft': ['cufft'],
@@ -229,7 +229,7 @@ cu_91['pkg_libs'] = {
 cu_91['libdevice_versions'] = ['10']
 
 cu_91['linux'] = {'blob': 'cuda_9.1.85_387.26_linux',
-                 'patches': [],
+                 'patches': ['cuda_9.1.85.1_linux'],
                  # need globs to handle symlinks
                  'cuda_lib_fmt': 'lib{0}.so*',
                  'nvtoolsext_fmt': 'lib{0}.so*',
@@ -238,7 +238,7 @@ cu_91['linux'] = {'blob': 'cuda_9.1.85_387.26_linux',
                  }
 
 cu_91['windows'] = {'blob': 'cuda_9.1.85_windows',
-                   'patches': [],
+                   'patches': ['cuda_9.1.85.1_windows'],
                    'cuda_lib_fmt': '{0}64_91.dll',
                    'nvtoolsext_fmt': '{0}64_1.dll',
                    'nvvm_lib_fmt': '{0}64_32_0.dll',
@@ -248,7 +248,7 @@ cu_91['windows'] = {'blob': 'cuda_9.1.85_windows',
                                     'NVIDIA Corporation', 'NVToolsExt', 'bin')
                    }
 
-cu_91['osx'] = {'blob': 'cuda_9.1.85_mac',
+cu_91['osx'] = {'blob': 'cuda_9.1.128_mac',
                'patches': [],
                'cuda_lib_fmt': 'lib{0}.9.1.dylib',
                'nvtoolsext_fmt': 'lib{0}.1.dylib',
